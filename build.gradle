@@ -1,0 +1,23 @@
+apply plugin: 'scala'
+
+group 'scalaPractice'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+ext.versions = [
+        scala            : '2.12',
+        scala_full       : '2.11.0'
+]
+
+dependencies {
+    compile "org.scala-lang:scala-library:2.11.0"
+    compile "org.scala-lang:scala-compiler:2.11.0"
+
+    testCompile "junit:junit:4.12"
+}
+
