@@ -1,8 +1,9 @@
 package com.prava.practice
 
 object Application extends App {
+  import com.prava.practice
   println("Hello World")
-  obj
+  parametricPolymorphism
 }
 
 object forComprehension {
