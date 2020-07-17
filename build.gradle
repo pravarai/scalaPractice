@@ -29,11 +29,13 @@ scmVersion {
     useHighestVersion = true
     tag { prefix = project.name }
     versionIncrementer 'incrementMinor'
+    println ("version inside scmVersion: $version")
     versionCreator { version, position -> getAppVersion(version) }
     hooks { post { context -> project.version = getAppVersion(context.currentVersion) } }
 }
 
 static def getAppVersion(version) {
+    println ("version inside getAppVersion: $version")
     def currentRevision = "git rev-parse HEAD".execute().text
     def branches = "git branch -r --contains $currentRevision".execute().text
     def dVersion = (branches.contains("origin/master")) ? version : currentRevision.trim()
