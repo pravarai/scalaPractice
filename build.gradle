@@ -25,3 +25,19 @@ dependencies {
     testCompile "junit:junit:4.12"
 }
 
+scmVersion {
+    useHighestVersion = true
+    tag { prefix = project.name }
+    versionIncrementer 'incrementMinor'
+    versionCreator { version, position -> getAppVersion(version) }
+    hooks { post { context -> project.version = getAppVersion(context.currentVersion) } }
+}
+
+static def getAppVersion(version) {
+    def currentRevision = "git rev-parse HEAD".execute().text
+    def branches = "git branch -r --contains $currentRevision".execute().text
+    def dVersion = (branches.contains("origin/master")) ? version : currentRevision.trim()
+    return dVersion
+}
+
+version = project.hasProperty('deployVersion') ? project.getProperty('deployVersion') : scmVersion.version
