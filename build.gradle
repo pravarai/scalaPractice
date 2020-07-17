@@ -28,7 +28,7 @@ dependencies {
 scmVersion {
     useHighestVersion = true
     tag { prefix = project.name }
-    versionIncrementer 'incrementMinor'
+    versionIncrementer 'incrementMajor'
     println ("version inside scmVersion: $version")
     versionCreator { version, position -> getAppVersion(version) }
     hooks { post { context -> project.version = getAppVersion(context.currentVersion) } }
